@@ -17,8 +17,8 @@ random_transform : True     # apply transformation or not
 # Feature_Extractor_config
 backbone: "resnet50"        # ['resnet', 'vgg', 'inception', 'xception', 'efficientnet']
 freeze_backbone : False     # whether to update weight of backbone
-imagenet_weights : True     # initialize backbone with imagenet weights
-#weights : "/Users/purvang/Downloads/resnet50_coco_best_v2.1.0.h5"
+imagenet_weights : False    # initialize backbone with imagenet weights
+weights : "/Users/purvang/Downloads/resnet50_coco_best_v2.1.0.h5"
 no_weights :                # no weight initialization
 
 #----------------------------------------------------------------------
@@ -26,14 +26,17 @@ no_weights :                # no weight initialization
 # along with choice of backbone.
 
 # Feature_Fusion_config
-need_fpn_functionality : True  # need fpn or not. if False, no feature fusion will take place.
-fpn_method : "bifpn"           # ["fpn", "bottom_up_fpn", "top_down_fpn", "bifpn", "wbifpn"]
-width: 64                      # number of channels in head
-depth: 1                       # depth for head
-separable_conv : True          # whether to use seperable conv or regular convoluation
-freeze_bn : False              # freeze bachnorm
+need_fpn_functionality : False # need fpn or not. if False, no feature fusion will take place.
+fpn_method : "fpn"             # ["fpn", "bottom_up_fpn", "top_down_fpn", "bifpn", "wbifpn"]
 fpn_depth: 1                   # depth of fpn
 
+#----------------------------------------------------------------------
+# model Head config
+width: 64                      # number of channels in head
+depth: 3                       # depth for head
+separable_conv : True          # whether to use seperable conv or regular convoluation
+freeze_bn : False              # freeze bachnorm
+kernel_size: 1                 # size of kernal to be used for conv operation
 #----------------------------------------------------------------------
 
 # Anchor_Generation_config
