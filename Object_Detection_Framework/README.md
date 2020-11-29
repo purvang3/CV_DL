@@ -3,7 +3,8 @@
 ## Introduction
 
 [**Keras based object detection framework**]
-####Purvang Lapsiwala
+
+#### Purvang Lapsiwala
 
 This Framework is a pure keras implementation of *SSD based Object Detection models*.
 Framework is build and maintained by me and mainly build for research purpose.Framework is one of its first kind which 
