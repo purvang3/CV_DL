@@ -10,7 +10,7 @@ Framework is build and maintained by me and mainly build for research purpose.Fr
 gives users flexibility to choose wide variety of backbones with feature fusion methods
 along with flexibility to build feature head network, which contributes to total network capacity.
  
-User only need to add parameters in config file. Example of config file [here](https://github.com/purvang3/Object_Detection/blob/main/ODF/config.yaml)
+User only need to add parameters in config file. Example of config file [here](https://github.com/purvang3/Object_Detection/blob/main/Object_Detection_Framework/config.yaml)
 
 Framework shares some code with [fizyr/keras-retinanet](https://github.com/fizyr/keras-retinanet) . Information about Data preperation and pre-trained models can be
 found from [fizyr/keras-retinanet](https://github.com/fizyr/keras-retinanet). 
