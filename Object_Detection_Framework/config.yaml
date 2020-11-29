@@ -18,7 +18,7 @@ random_transform : True     # apply transformation or not
 backbone: "resnet50"        # ['resnet', 'vgg', 'inception', 'xception', 'efficientnet']
 freeze_backbone : False     # whether to update weight of backbone
 imagenet_weights : False    # initialize backbone with imagenet weights
-weights : "/Users/purvang/Downloads/resnet50_coco_best_v2.1.0.h5"
+weights : "./data/resnet50_coco_best_v2.1.0.h5"
 no_weights :                # no weight initialization
 
 #----------------------------------------------------------------------
@@ -55,11 +55,11 @@ scales  : [1.0, 1.26, 1.58]
 #----------------------------------------------------------------------
 
 #train_input_config
-annotations: "/Users/purvang/Desktop/retinanet/train.csv"
-classes : "/Users/purvang/Desktop/retinanet/labels.csv"
-val_annotations : "/Users/purvang/Desktop/retinanet/small_test.csv"
+annotations: "./data/train.csv"
+classes : "./data/labels.csv"
+val_annotations : "./data/small_test.csv"
 
-tensorboard_dir : "/Users/purvang/Documents/models/keras-retinanet/everest_data/tensorboard/"
+tensorboard_dir : "./data/tensorboard/"
 
 snapshot :
 snapshot_path :
