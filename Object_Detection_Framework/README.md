@@ -33,9 +33,9 @@ python 3.6
 - [x] Step, Linear and Polynomial learning rate schedule.
 - [x] Feature_Visualization and Weight_Visualization after every n epoch. 
 
-####* one of the key features of this framework is that any backbone can be configured with any feature fusion method by specifying in command line argument based on your your application (Accuracy Vs Inference).
+#### one of the key features of this framework is that any backbone can be configured with any feature fusion method by specifying in command line argument based on your your application (Accuracy Vs Inference).
 
-### More backbones and features will be added and Framework will be released once Research is done.
+#### More backbones and features will be added and Framework will be released once Research is done.
 
 ### Usage
 
