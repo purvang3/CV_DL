@@ -96,21 +96,21 @@ lr : 0.0001
 #----------------------------------------------------------------------
 
 # Feature_Visualization_config
-image_path: "./features/1.jpeg"  # (image path whose feature maps are interested .)
+image_path: "./features/1.jpeg"  # (image path whose feature maps are interested)
 conv_features : False            # (save featuremaps after conv op)
 bn_features : False              # (save features maps batch norn op)
 activation_features : False      # (save features maps batch activation op)
 save_weights : False             # (whether we want to save weight related to corresponding op)
 feature_freq_in_epochs: 1        # (epochs after we want to save feature maps)
 feature_saving_dir_path : "./features"  # (feature maps saving parent dir)
-num_of_channels : 1    # (number of channels to save for feature map.)
+num_of_channels : 1             # (number of channels to save for feature map)
 #----------------------------------------------------------------------
 
 
-gpu : 0
-multi_gpu : 0
-multi_gpu_force : False
+gpu : 0                  # id of the gpu
+multi_gpu : 1            # Number of GPUs to use for parallel processing.
+multi_gpu_force : False  # True if multi gpu needed
 
-multiprocessing: False
-workers : 0
-max_queue_size : 10
+multiprocessing: True    # use multiple workers while training
+workers : 0              # Number of workers to use
+max_queue_size : 10      # queue length for multiprocessing workers
