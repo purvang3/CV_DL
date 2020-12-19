@@ -222,20 +222,6 @@ class VGGBackbone(BackBone):
         if modifier:
             vgg = modifier(vgg)
 
-        # shape = {
-        #     vgg.layers[0].name: (None,) + (300, 300, 3),
-        # }
-        #
-        # for layer in vgg.layers[1:]:
-        #     nodes = layer._inbound_nodes
-        #     for node in nodes:
-        #         inputs = [shape[lr.name] for lr in node.inbound_layers]
-        #         if not inputs:
-        #             continue
-        #         shape[layer.name] = layer.compute_output_shape(inputs[0] if len(inputs) == 1 else inputs)
-
-        # create the full model
-
         layer_names = ["block3_pool", "block4_pool", "block5_pool"]
         layer_outputs = [vgg.get_layer(name).output for name in layer_names]
         layer_outputs = [None, None, *layer_outputs]
@@ -382,20 +368,6 @@ class EfficientNetBackbone(BackBone):
 
         if modifier:
             efficientnet = modifier(efficientnet)
-
-        # shape = {
-        #     efficientnet.layers[0].name: (None,) + (300, 300, 3),
-        # }
-        #
-        # for layer in efficientnet.layers[1:]:
-        #     nodes = layer._inbound_nodes
-        #     for node in nodes:
-        #         inputs = [shape[lr.name] for lr in node.inbound_layers]
-        #         if not inputs:
-        #             continue
-        #         shape[layer.name] = layer.compute_output_shape(inputs[0] if len(inputs) == 1 else inputs)
-        #
-        # print(shape)
 
         return retinanet.retinanet(inputs=inputs,
                                    num_classes=num_classes,
