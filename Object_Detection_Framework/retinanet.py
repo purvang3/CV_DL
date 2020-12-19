@@ -191,8 +191,6 @@ def retinanet(
     features_size = kwargs.get("width")
     pyramid_feature_size = {"pyramid_feature_size": features_size}
     kwargs.update(pyramid_feature_size)
-    noise_type = kwargs.get("noise_type")
-    kwargs.pop("noise_type")
 
     if num_anchors is None:
         num_anchors = AnchorParameters.default.num_anchors()
@@ -207,12 +205,6 @@ def retinanet(
     elif fpn_method == "fpn":
         features = build_FPN(C3, C4, C5, feature_size=features_size)
 
-    elif fpn_method == "bottom_up_fpn":
-        features = build_bottom_up_FPN(backbone_layers, feature_size=features_size)
-
-    elif fpn_method == "top_down_fpn":
-        raise ValueError("NOT IMPLEMENTED")
-
     elif fpn_method == "bifpn":
         features = backbone_layers
         for i in range(fpn_depth):
@@ -226,39 +218,9 @@ def retinanet(
 
     g_features = [f for f in features]
 
-    if noise_type:
-        if noise_type not in NOISE_MAP_DICT.keys():
-            raise ValueError(f"{noise_type} is not valid method. supported noise_types: {NOISE_MAP_DICT.keys()}")
-
-        features = noisy_features(features, features_size, noise_type)
-
     pyramids = __build_pyramid(submodels, features)
 
     return keras.models.Model(inputs=inputs, outputs=pyramids, name=name)
-
-
-NOISE_MAP_DICT = {
-    "add": keras.layers.Add(),
-    "average": keras.layers.Average(),
-    "gaussian": keras.layers.GaussianNoise(stddev=1.0),
-    "mul": keras.layers.Multiply()
-
-}
-
-
-def noisy_features(features, features_size, noise_type):
-    t = []
-    for layer in features:
-        if noise_type == "gaussian":
-            layer = NOISE_MAP_DICT[noise_type](layer)
-            t.append(layer)
-            continue
-        l_ = keras.layers.Conv2D(filters=features_size, kernel_size=1)(layer)
-        l_ = NOISE_MAP_DICT[noise_type]([l_, layer])
-        l = keras.layers.Activation('sigmoid')(l_)
-        t.append(l)
-    features = t
-    return features
 
 
 def __build_anchors(anchor_parameters, features):
